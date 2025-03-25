@@ -5,7 +5,7 @@
 *.dylib
 .idea/*
 
-# Test binary, build with `go test -c`
+# Test binary, build with go test -c
 *.test
 
 # Output of the go coverage tool, specifically when used with LiteIDE
@@ -52,3 +52,6 @@ debug
 *.pprof
 *.pdf
 pprof.*
+
+# Ensure files in the config folder are treated as text
+config/* text
