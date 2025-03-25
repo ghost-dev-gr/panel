@@ -35,3 +35,8 @@ resources/lang/locales.js
 /public/build
 /public/hot
 result
+
+# Ignore specific config files but not the config folder
+*.yml
+*.yaml
+!config/
