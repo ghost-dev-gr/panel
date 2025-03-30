@@ -140,25 +140,7 @@ class DaemonServerRepository extends DaemonRepository
         $this->revokeJTIs([md5($id . $this->server->uuid)]);
     }
 
-    /**
-     * Revokes an array of JWT JTI's by marking any token generated before the current time on
-     * the Wings instance as being invalid.
-     *
-     * @throws DaemonConnectionException
-     */
-    protected function revokeJTIs(array $jtis): void
-    {
-        Assert::isInstanceOf($this->server, Server::class);
 
-        try {
-            $this->getHttpClient()
-                ->post(sprintf('/api/servers/%s/ws/deny', $this->server->uuid), [
-                    'json' => ['jtis' => $jtis],
-                ]);
-        } catch (TransferException $exception) {
-            throw new DaemonConnectionException($exception);
-        }
-    }
     /**
      * Create a new proxy
      *
@@ -214,6 +196,13 @@ class DaemonServerRepository extends DaemonRepository
             throw new DaemonConnectionException($exception);
         }
     }
+    /**
+     * Revokes an array of JWT JTI's by marking any token generated before the current time on
+     * the Wings instance as being invalid.
+     *
+     * @throws DaemonConnectionException
+     */
+  
     protected function revokeJTIs(array $jtis): void
     {
         Assert::isInstanceOf($this->server, Server::class);
