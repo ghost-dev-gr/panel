@@ -214,7 +214,6 @@ class DaemonServerRepository extends DaemonRepository
             throw new DaemonConnectionException($exception);
         }
     }
-    below
     protected function revokeJTIs(array $jtis): void
     {
         Assert::isInstanceOf($this->server, Server::class);
