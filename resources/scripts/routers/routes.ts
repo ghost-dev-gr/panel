@@ -13,7 +13,6 @@ import AccountApiContainer from '@/components/dashboard/AccountApiContainer';
 import AccountSSHContainer from '@/components/dashboard/ssh/AccountSSHContainer';
 import ActivityLogContainer from '@/components/dashboard/activity/ActivityLogContainer';
 import ServerActivityLogContainer from '@/components/server/ServerActivityLogContainer';
-import ProxyContainer from '@/components/server/proxy/ProxyContainer';
 
 // Each of the router files is already code split out appropriately — so
 // all of the items above will only be loaded in when that router is loaded.
