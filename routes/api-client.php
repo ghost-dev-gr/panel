@@ -133,11 +133,6 @@ Route::group([
         Route::get('/', [Client\Servers\StartupController::class, 'index']);
         Route::put('/variable', [Client\Servers\StartupController::class, 'update']);
     });
-    Route::group(['prefix' => '/proxy'], function () {
-        Route::get('/', [Client\Servers\ProxyController::class, 'index']);
-        Route::post('/create', [Client\Servers\ProxyController::class, 'create']);
-        Route::delete('/delete/{id}', [Client\Servers\ProxyController::class, 'delete']);
-    });
 
     Route::group(['prefix' => '/settings'], function () {
         Route::post('/rename', [Client\Servers\SettingsController::class, 'rename']);
