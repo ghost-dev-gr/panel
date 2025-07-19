@@ -39,7 +39,6 @@ export interface Server {
         databases: number;
         allocations: number;
         backups: number;
-        proxies: number;
     };
     isTransferring: boolean;
     variables: ServerEggVariable[];
