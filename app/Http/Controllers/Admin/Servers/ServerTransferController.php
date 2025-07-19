@@ -5,7 +5,6 @@ namespace Pterodactyl\Http\Controllers\Admin\Servers;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Pterodactyl\Models\Server;
-use Pterodactyl\Models\ServerProxy;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Pterodactyl\Models\ServerTransfer;
@@ -15,7 +14,6 @@ use Pterodactyl\Services\Nodes\NodeJWTService;
 use Pterodactyl\Repositories\Eloquent\NodeRepository;
 use Pterodactyl\Repositories\Wings\DaemonTransferRepository;
 use Pterodactyl\Contracts\Repository\AllocationRepositoryInterface;
-use Pterodactyl\Repositories\Wings\DaemonServerRepository;
 
 class ServerTransferController extends Controller
 {
@@ -28,8 +26,7 @@ class ServerTransferController extends Controller
         private ConnectionInterface $connection,
         private DaemonTransferRepository $daemonTransferRepository,
         private NodeJWTService $nodeJWTService,
-        private NodeRepository $nodeRepository,
-        private DaemonServerRepository $daemonServerRepository
+        private NodeRepository $nodeRepository
     ) {
     }
 
@@ -88,17 +85,6 @@ class ServerTransferController extends Controller
 
             return $transfer;
         });
-
-        $proxies = ServerProxy::query()->where("server_id", $server->id)->get();
-        foreach ($proxies as $proxy) {
-            try {
-                $this->daemonServerRepository->setServer($server)->deleteProxy($proxy->domain, $proxy->allocation->port);
-            } catch (\Exception $exception) {
-                $proxy->delete();
-
-                Log::warning($exception);
-            }
-        }
 
         $this->alert->success(trans('admin/server.alerts.transfer_started'))->flash();
 
