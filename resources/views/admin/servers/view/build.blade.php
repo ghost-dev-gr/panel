@@ -119,13 +119,6 @@
                                     </div>
                                     <p class="text-muted small">The total number of backups that can be created for this server.</p>
                                 </div>
-                                 <div class="form-group col-xs-6">
-                                    <label for="proxy_limit" class="control-label">Proxy Limit</label>
-                                    <div>
-                                        <input type="text" name="proxy_limit" class="form-control" value="{{ old('proxy_limit', $server->proxy_limit) }}"/>
-                                    </div>
-                                    <p class="text-muted small">The total number of reverse proxies that can be created for this server.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
