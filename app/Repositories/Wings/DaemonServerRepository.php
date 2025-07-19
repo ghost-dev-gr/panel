@@ -140,68 +140,6 @@ class DaemonServerRepository extends DaemonRepository
         $this->revokeJTIs([md5($id . $this->server->uuid)]);
     }
 
-
-    /**
-     * Create a new proxy
-     *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
-     */
-    public function createProxy(string $domain, string $ip, string $port, bool $ssl, bool $use_lets_encrypt, string $client_email, string $ssl_cert, string $ssl_key): void
-    {
-        Assert::isInstanceOf($this->server, Server::class);
-
-        try {
-            $this->getHttpClient()->post(sprintf(
-                '/api/servers/%s/proxy/create',
-                $this->server->uuid
-            ),
-            [
-                'json' => [
-                    'domain' => $domain,
-                    'ip' => $ip,
-                    'port' => $port,
-                    'ssl' => $ssl,
-                    'use_lets_encrypt' => $use_lets_encrypt,
-                    'client_email' => $client_email,
-                    'ssl_cert' => $ssl_cert,
-                    'ssl_key' => $ssl_key
-                ],
-            ]);
-        } catch (TransferException $exception) {
-            throw new DaemonConnectionException($exception);
-        }
-    }
-
-    /**
-     * Delete a proxy
-     *
-     * @throws \Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException
-     */
-    public function deleteProxy(string $domain, string $port): void
-    {
-        Assert::isInstanceOf($this->server, Server::class);
-
-        try {
-            $this->getHttpClient()->post(sprintf(
-                '/api/servers/%s/proxy/delete',
-                $this->server->uuid
-            ),
-            [
-                'json' => [
-                    'domain' => $domain,
-                    'port' => $port,
-                ],
-            ]);
-        } catch (TransferException $exception) {
-            throw new DaemonConnectionException($exception);
-        }
-    }
-    /**
-     * Revokes an array of JWT JTI's by marking any token generated before the current time on
-     * the Wings instance as being invalid.
-     *
-     * @throws DaemonConnectionException
-     */
   
     protected function revokeJTIs(array $jtis): void
     {
