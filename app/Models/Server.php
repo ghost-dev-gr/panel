@@ -170,7 +170,6 @@ class Server extends Model
         'database_limit' => 'present|nullable|integer|min:0',
         'allocation_limit' => 'sometimes|nullable|integer|min:0',
         'backup_limit' => 'present|nullable|integer|min:0',
-        'proxy_limit' => 'sometimes|nullable|integer|min:0',
     ];
 
     /**
@@ -192,7 +191,6 @@ class Server extends Model
         'database_limit' => 'integer',
         'allocation_limit' => 'integer',
         'backup_limit' => 'integer',
-        'proxy_limit' => 'integer',
         self::CREATED_AT => 'datetime',
         self::UPDATED_AT => 'datetime',
         'deleted_at' => 'datetime',
