@@ -140,11 +140,5 @@ export default {
             name: 'Activity',
             component: ServerActivityLogContainer,
         },
-        {
-            path: '/proxy',
-            permission: 'proxy.*',
-            name: 'Proxy',
-            component: ProxyContainer,
-        },
     ],
 } as Routes;
