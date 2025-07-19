@@ -199,13 +199,6 @@ class Permission extends Model
                 'reinstall' => 'Allows a user to trigger a reinstall of this server.',
             ],
         ],
-        'proxy' => [
-             'description' => 'Permissions that control a user\'s access to the server proxy.',
-            'keys' => [
-                'create' => 'Allows a user to create a new proxy for this server.',
-                'delete' => 'Allows a user to remove a proxy from this server.',
-            ],
-        ],
         'activity' => [
             'description' => 'Permissions that control a user\'s access to the server activity logs.',
             'keys' => [
